@@ -1,0 +1,55 @@
+@media only screen and (max-width: 768px) {
+	* {
+		overflow-x: hidden;
+	}
+}
+
+body {
+	margin: 0;
+	font: normal Arial, Helvetica, sans-serif;
+	font-size: 18;
+	line-height: 1.5;
+}
+.particles {
+	position: fixed;
+	overflow: hidden;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	background-color: black;
+}
+
+.form-div {
+	position: absolute;
+	width: 100%;
+}
+
+.flashcard {
+	background-color: rgba(111, 201, 131, 0.5) !important;
+	color: white;
+	margin-left: 100px;
+	/* Added */
+	margin-right: 100px;
+	float: none;
+	/* Added */
+	margin-bottom: 10px;
+	/* Added */
+}
+
+.content {
+	background-color: rgba(39, 36, 36, 0.5) !important;
+	color: whitesmoke;
+}
+
+.white-card {
+	background-color: rgba(39, 36, 36, 0.5) !important;
+	color: whitesmoke;
+}
+
+@media only screen and (min-width: 768px) {
+	.particles {
+		/* height: 250%; */
+		overflow-x: hidden;
+	}
+}
