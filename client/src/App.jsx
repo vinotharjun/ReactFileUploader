@@ -1,9 +1,11 @@
 import React from 'react';
 import Particles from 'react-particles-js';
 import Axios from 'axios';
+import Toaster from './Toaster'
 import './App.css';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+ import { toast } from 'react-toastify';
+ import 'react-toastify/dist/ReactToastify.css';
+ toast.configure()
 const particleOptions = {
 	particles: {
 		number: {
@@ -114,7 +116,8 @@ class App extends React.Component {
 	state = {
 		fileName: null,
 		fileExtension: null,
-		file: null
+		file: null,
+		state:null
 	};
 
 	handleFileChange = e => {
@@ -124,7 +127,8 @@ class App extends React.Component {
 		this.setState({
 			file,
 			fileName,
-			fileExtension: fileExt
+			fileExtension: fileExt,
+			state:null
 		});
 	};
 
@@ -133,9 +137,20 @@ class App extends React.Component {
 		try {
 			let { data } = await Axios.post('/getUploadLink', { fileName: this.state.fileName, fileExtension: this.state.fileExtension });
 			let uploadResult = await Axios.put(data.uploadLink, this.state.file);
+			// toast("uploaderd")
+			console.log(uploadResult)
+			this.setState({
+				...this.state,
+				state:"uploaded"
+			});
 			console.log("successfully  uploaded")
-			toast("Wow so easy !");
+			
 		} catch (err) {
+			this.setState({
+				...this.state,
+				state:"error"
+
+			})
 			console.log(err);
 		}
 		// let form = new FormData();
@@ -143,11 +158,29 @@ class App extends React.Component {
 	};
 
 	render() {
+		
 		return (
+			
 			<div className='App'>
 				<Particles className='particles' params={particleOptions} />
 				<div className='body'>
 					<div className='container py-5'>
+					
+					<div>
+						{
+							(()=>{
+								if(this.state.state){
+									return (
+										<Toaster msg={this.state.state} />
+									)
+								}
+							
+									
+								
+								})()
+							}
+						
+					</div>
 						<div className='row'>
 							<div className='col-md-12'>
 								<h2 className='text-center text-white mb-4'>Phosphene AI</h2>
@@ -155,6 +188,9 @@ class App extends React.Component {
 								<div className='animated fadeInLeftBig'>
 									<div className=' card bg-success  text-black content'>
 										<div className='card-body'>
+										
+				
+		
 											<p>
 												We still remember our first hobby project. We collected some transcripts of certain public speakers to
 												analyze what made them so special. Working with text is such a beauty. The complexity behind it and
