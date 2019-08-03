@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Particles from 'react-particles-js';
 import Axios from 'axios';
 import Toaster from './Toaster'
@@ -119,7 +120,18 @@ class App extends React.Component {
 		file: null,
 		state:null
 	};
-
+	// componentDidMount() {
+	// 	window.scrollTo(0, 0)	
+	// 	console.log("componentDidMount")
+	//   }
+	  componentDidUpdate(){
+		  if(this.state.state==="uploaded"|| this.state.state==="error"){
+		  console.log("componentWillMount")
+		  console.log(this.state.state)
+		  window.scrollTo(0, 0)	
+		  }
+	  }
+	  
 	handleFileChange = e => {
 		const file = e.target.files[0];
 		const fileExt = file.name.slice(((file.name.lastIndexOf('.') - 2) >>> 0) + 2);
@@ -144,6 +156,7 @@ class App extends React.Component {
 				state:"uploaded"
 			});
 			console.log("successfully  uploaded")
+		
 			
 		} catch (err) {
 			this.setState({

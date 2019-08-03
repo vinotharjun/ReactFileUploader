@@ -1,0 +1,26 @@
+
+.flasher {
+    
+	color: white;
+	margin-left: 100px;
+	/* Added */
+	margin-right: 100px;
+	float: none;
+	/* Added */
+	margin-bottom: 10px;
+	/* Added */
+}
+@media only screen and (min-width: 768px) {
+    .flasher {
+     
+    }
+	
+}
+@media(min-width: 320px){
+    .flasher {
+    bottom:20px;
+
+                /* Added */
+            }
+
+}
