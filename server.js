@@ -8,9 +8,9 @@ var env =  'production';
 const app = express();
 const port = process.env.PORT;
 if (env === 'production') {
-    app.use(express.static('Client/build'));
+    app.use(express.static('client/build'));
     app.get('*', (req,res) => {
-        res.sendFile(path.join(__dirname + '/Client/build/index.html'));
+        res.sendFile(path.join(__dirname + '/client/build/index.html'));
     });
 }
 const s3 = new AWS.S3({
